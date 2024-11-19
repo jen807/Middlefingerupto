@@ -3,12 +3,14 @@ import Main from "./Main";
 import PageNotFound from "./PageNotFound";
 
 const Router = () => {
-  <HashRouter>
-    <Routes>
-      <Route path="/" element={<Main />}></Route>
-      <Route path="/*" element={<PageNotFound />}></Route>
-    </Routes>
-  </HashRouter>;
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/*" element={<PageNotFound />} />
+      </Routes>
+    </HashRouter>
+  );
 };
 
 export default Router;

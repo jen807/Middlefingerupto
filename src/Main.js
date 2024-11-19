@@ -20,9 +20,6 @@ const Title = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   color: black;
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 const ImgBox = styled.div`
@@ -93,7 +90,8 @@ const PngFinger = styled.div`
 
 const Feedbackmsg = styled.div`
   text-align: center;
-  font-size: 16px;
+  font-size: 26px;
+  color: #6d6d6d;
   margin-top: 20px;
   p {
     margin-bottom: 10px;
@@ -118,11 +116,19 @@ const Main = () => {
     }
   };
 
+  const resetState = () => {
+    setImgUrl("");
+    setIsGenerated(false);
+    setLoading(false);
+  };
+
   return loading ? (
     <Loading />
   ) : (
     <Container>
-      <Title to="/">Middle finger up to..</Title>
+      <Title to="/" onClick={resetState}>
+        Middle finger up to..
+      </Title>
       <ImgBox>
         <PngFinger />
         {imgUrl && <ExImg imgUrl={imgUrl} />}
