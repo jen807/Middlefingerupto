@@ -92,10 +92,24 @@ const Feedbackmsg = styled.div`
   text-align: center;
   font-size: 26px;
   color: #6d6d6d;
-  margin-top: 20px;
+  margin-top: 10px;
   p {
     margin-bottom: 10px;
   }
+`;
+
+const Button = styled.button`
+  all: unset;
+  background-color: black;
+  padding: 0 20px;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  color: white;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  cursor: pointer;
 `;
 
 const Main = () => {
@@ -140,8 +154,11 @@ const Main = () => {
         </Form>
       ) : (
         <Feedbackmsg>
-          <p>Done! Press the photo for download</p>
+          <p>Done!</p>
           <p>DON'T BE TOO MEAN TO PEOPLE</p>
+          <Button to="/" onClick={resetState}>
+            Go back
+          </Button>
         </Feedbackmsg>
       )}
     </Container>
