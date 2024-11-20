@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# BUMPFLICKS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 URL
 
-## Available Scripts
+[https://jen807.github.io/Middlefingerupto/#/](https://jen807.github.io/Middlefingerupto/#/)
 
-In the project directory, you can run:
+## 목적
 
-### `npm start`
+"Middle Finger Up to.."는 유쾌한 재미를 주기 위해 고안된 프로젝트이다. 사용자가 이미지 URL을 입력하면,
+해당 이미지 위에 중지손가락을 날리는 PNG 이미지를 추가하여 합성된 결과를 제공한다.
+이를 통해 가벼운 농담이나 유머를 표현할 수 있는 이미지를 생성하는 것이 목표이다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 기술 스택
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- JS
+- React
+- Node.js
+- Git
+- GitHub
+- CSS
+- HTML
 
-### `npm test`
+## 개발 기간
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+11월 19일 - 11월 20일 (2일)
 
-### `npm run build`
+## 구현 기능
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 이미지 업로드 또는 URL 입력: 사용자가 URL을 입력하거나 이미지를 업로드하여 원하는 이미지를 제공할 수 있다.
+- 이미지 합성: 제공된 이미지 위에 중지 PNG 이미지를 적절한 위치에 배치하여 자연스러운 합성 결과를 생성한다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 지원 디바이스
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- PC
+- mo
 
-### `npm run eject`
+## 폰트
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 헤딩/본문: "Noto Sans KR", sans-serif
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 프로젝트 진행 중 새로 알게 된 내용
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **규모가 작은 프로젝트라도 기획이 탄탄하면 좋다!**: 스케일이 크지 않더라도 기획을 탄탄하게 세우고 들어갔을 때 무조건 좋다는걸 새롭게 알게 되었습니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 프로젝트 진행하면서 느낀점
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **재미있던 경험**: 이런 작은 토이 프로젝트도 기분전환으로 만들면 도움이 된다는 것을 느꼈습니다. 새로운 프로젝트를 들어갈때에는 보다 더 볼륨이 큰 프로젝트를 하기로 마음먹었습니다.
