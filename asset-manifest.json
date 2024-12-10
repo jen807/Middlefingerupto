@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/Middlefingerupto/static/js/main.2dda2b87.js",
+    "main.js": "/Middlefingerupto/static/js/main.fad97bee.js",
     "static/media/finger.png": "/Middlefingerupto/static/media/finger.f81a17b8bed66912103a.png",
     "index.html": "/Middlefingerupto/index.html",
-    "main.2dda2b87.js.map": "/Middlefingerupto/static/js/main.2dda2b87.js.map"
+    "main.fad97bee.js.map": "/Middlefingerupto/static/js/main.fad97bee.js.map"
   },
   "entrypoints": [
-    "static/js/main.2dda2b87.js"
+    "static/js/main.fad97bee.js"
   ]
 }
