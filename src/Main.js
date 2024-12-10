@@ -52,15 +52,18 @@ const ExImg = styled.div`
 const Form = styled.form`
   width: 400px;
   display: flex;
-  justify-content: space-between;
-  input {
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  input[type="text"],
+  input[type="file"] {
     all: unset;
     width: 100%;
     height: 30px;
     border-bottom: 1px solid #b1b1b1;
     padding: 10px;
     font-size: 20px;
-    margin-right: 20px;
   }
 
   button {
@@ -73,6 +76,8 @@ const Form = styled.form`
     color: white;
     font-weight: 300;
     letter-spacing: 0.5px;
+    margin-top: 10px;
+    cursor: pointer;
   }
 `;
 
@@ -116,17 +121,30 @@ const Main = () => {
   const [imgUrl, setImgUrl] = useState("");
   const [isGenerated, setIsGenerated] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [filePreview, setFilePreview] = useState("");
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    const inputValue = e.target[0].value;
-    if (inputValue) {
+    const textValue = e.target[0].value;
+    const fileValue = e.target[1].files[0];
+
+    if (textValue) {
+      // URL 입력 처리
       setLoading(true);
       setTimeout(() => {
-        setImgUrl(inputValue);
+        setImgUrl(textValue);
         setIsGenerated(true);
         setLoading(false);
       }, 2000);
+    } else if (fileValue) {
+      // 파일 업로드 처리
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImgUrl(reader.result); // Base64 형식으로 저장
+        setIsGenerated(true);
+        setLoading(false);
+      };
+      reader.readAsDataURL(fileValue);
     }
   };
 
@@ -134,6 +152,7 @@ const Main = () => {
     setImgUrl("");
     setIsGenerated(false);
     setLoading(false);
+    setFilePreview("");
   };
 
   return loading ? (
@@ -150,6 +169,7 @@ const Main = () => {
       {!isGenerated ? (
         <Form onSubmit={SubmitHandler}>
           <input type="text" placeholder="Enter your img url" />
+          <input type="file" accept="image/*" />
           <button type="submit">Generate</button>
         </Form>
       ) : (
