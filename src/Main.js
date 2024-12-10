@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import fingerPng from "./imgs/finger.png";
 import { mainStyle } from "./Globalstyled";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
 
@@ -33,12 +33,20 @@ const ImgBox = styled.div`
   align-items: center;
   background-color: #ddd;
   overflow: hidden;
+`;
 
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
+const PngFinger = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: url(${fingerPng});
+  background-size: contain; /* 이미지 크기를 유지하면서 최대한 맞춤 */
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 400px;
+  height: 400px;
+  z-index: 1; /* 사용자 이미지보다 위에 오도록 설정 */
 `;
 
 const ExImg = styled.div`
@@ -47,6 +55,7 @@ const ExImg = styled.div`
   background-position: center;
   width: 400px;
   height: 400px;
+  z-index: 0; /* 배경보다 아래로 설정 */
 `;
 
 const Form = styled.form`
@@ -81,18 +90,6 @@ const Form = styled.form`
   }
 `;
 
-const PngFinger = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-image: url(${fingerPng});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 400px;
-  height: 400px;
-`;
-
 const Feedbackmsg = styled.div`
   text-align: center;
   font-size: 26px;
@@ -115,13 +112,18 @@ const Button = styled.button`
   letter-spacing: 0.5px;
   margin-top: 10px;
   cursor: pointer;
+  margin-right: 10px;
+`;
+
+const Canvas = styled.canvas`
+  display: none;
 `;
 
 const Main = () => {
   const [imgUrl, setImgUrl] = useState("");
   const [isGenerated, setIsGenerated] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [filePreview, setFilePreview] = useState("");
+  const canvasRef = useRef();
 
   const SubmitHandler = (e) => {
     e.preventDefault();
@@ -129,7 +131,6 @@ const Main = () => {
     const fileValue = e.target[1].files[0];
 
     if (textValue) {
-      // URL 입력 처리
       setLoading(true);
       setTimeout(() => {
         setImgUrl(textValue);
@@ -137,10 +138,9 @@ const Main = () => {
         setLoading(false);
       }, 2000);
     } else if (fileValue) {
-      // 파일 업로드 처리
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImgUrl(reader.result); // Base64 형식으로 저장
+        setImgUrl(reader.result);
         setIsGenerated(true);
         setLoading(false);
       };
@@ -152,7 +152,32 @@ const Main = () => {
     setImgUrl("");
     setIsGenerated(false);
     setLoading(false);
-    setFilePreview("");
+  };
+
+  const downloadImage = () => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    const baseImage = new Image();
+    baseImage.src = fingerPng;
+
+    baseImage.onload = () => {
+      ctx.drawImage(baseImage, 0, 0, 400, 400);
+
+      if (imgUrl) {
+        const overlayImage = new Image();
+        overlayImage.src = imgUrl;
+
+        overlayImage.onload = () => {
+          ctx.drawImage(overlayImage, 0, 0, 400, 400);
+
+          const link = document.createElement("a");
+          link.download = "generated-image.png";
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        };
+      }
+    };
   };
 
   return loading ? (
@@ -163,7 +188,7 @@ const Main = () => {
         Middle finger up to..
       </Title>
       <ImgBox>
-        <PngFinger />
+        <PngFinger /> {/* 항상 finger.png 표시 */}
         {imgUrl && <ExImg imgUrl={imgUrl} />}
       </ImgBox>
       {!isGenerated ? (
@@ -176,11 +201,13 @@ const Main = () => {
         <Feedbackmsg>
           <p>Done!</p>
           <p>DON'T BE TOO MEAN TO PEOPLE</p>
+          <Button onClick={downloadImage}>Save</Button>
           <Button to="/" onClick={resetState}>
             Go back
           </Button>
         </Feedbackmsg>
       )}
+      <Canvas ref={canvasRef} width="400" height="400" />
     </Container>
   );
 };
