@@ -26,8 +26,7 @@ const ImgBox = styled.div`
   position: relative;
   width: 400px;
   height: 400px;
-  margin-bottom: 30px;
-  margin-top: 50px;
+  margin: 50px 0 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +50,6 @@ const PngFinger = styled.div`
   background-position: center;
   width: 400px;
   height: 400px;
-  z-index: 1;
 
   @media (max-width: 430px) {
     width: 300px;
@@ -65,7 +63,6 @@ const ExImg = styled.div`
   background-position: center;
   width: 400px;
   height: 400px;
-  z-index: 0;
 
   @media (max-width: 430px) {
     width: 300px;
@@ -88,6 +85,11 @@ const Form = styled.form`
     border-bottom: 1px solid #b1b1b1;
     padding: 10px;
     font-size: 20px;
+
+    @media (max-width: 430px) {
+      width: 300px;
+      padding: 8px;
+    }
   }
 
   button {
@@ -98,10 +100,9 @@ const Form = styled.form`
     height: 50px;
     text-align: center;
     color: white;
+    cursor: pointer;
     font-weight: 300;
     letter-spacing: 0.5px;
-    margin-top: 10px;
-    cursor: pointer;
   }
 `;
 
@@ -110,6 +111,7 @@ const Feedbackmsg = styled.div`
   font-size: 26px;
   color: #6d6d6d;
   margin-top: 10px;
+
   p {
     margin-bottom: 10px;
   }
@@ -124,8 +126,6 @@ const Button = styled.button`
   text-align: center;
   color: white;
   font-weight: 300;
-  letter-spacing: 0.5px;
-  margin-top: 10px;
   cursor: pointer;
   margin-right: 10px;
 `;
@@ -145,8 +145,8 @@ const Main = () => {
     const textValue = e.target[0].value;
     const fileValue = e.target[1].files[0];
 
+    setLoading(true);
     if (textValue) {
-      setLoading(true);
       setTimeout(() => {
         setImgUrl(textValue);
         setIsGenerated(true);
@@ -173,18 +173,27 @@ const Main = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
+    const canvasSize = window.innerWidth <= 430 ? 300 : 400;
+    const scaleFactor = window.devicePixelRatio || 1;
+
+    canvas.width = canvasSize * scaleFactor;
+    canvas.height = canvasSize * scaleFactor;
+    ctx.scale(scaleFactor, scaleFactor);
+
     const baseImage = new Image();
+    baseImage.crossOrigin = "anonymous";
     baseImage.src = fingerPng;
 
     baseImage.onload = () => {
-      ctx.drawImage(baseImage, 0, 0, 400, 400);
+      ctx.drawImage(baseImage, 0, 0, canvasSize, canvasSize);
 
       if (imgUrl) {
         const overlayImage = new Image();
+        overlayImage.crossOrigin = "anonymous";
         overlayImage.src = imgUrl;
 
         overlayImage.onload = () => {
-          ctx.drawImage(overlayImage, 0, 0, 400, 400);
+          ctx.drawImage(overlayImage, 0, 0, canvasSize, canvasSize);
 
           const link = document.createElement("a");
           link.download = "generated-image.png";
@@ -203,7 +212,7 @@ const Main = () => {
         Middle finger up to..
       </Title>
       <ImgBox>
-        <PngFinger /> {/* 항상 finger.png 표시 */}
+        <PngFinger />
         {imgUrl && <ExImg imgUrl={imgUrl} />}
       </ImgBox>
       {!isGenerated ? (
@@ -217,12 +226,10 @@ const Main = () => {
           <p>Done!</p>
           <p>DON'T BE TOO MEAN TO PEOPLE</p>
           <Button onClick={downloadImage}>Save</Button>
-          <Button to="/" onClick={resetState}>
-            Go back
-          </Button>
+          <Button onClick={resetState}>Go back</Button>
         </Feedbackmsg>
       )}
-      <Canvas ref={canvasRef} width="400" height="400" />
+      <Canvas ref={canvasRef} />
     </Container>
   );
 };
