@@ -33,6 +33,11 @@ const ImgBox = styled.div`
   align-items: center;
   background-color: #ddd;
   overflow: hidden;
+
+  @media (max-width: 430px) {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const PngFinger = styled.div`
@@ -41,12 +46,17 @@ const PngFinger = styled.div`
   left: 50%;
   transform: translateX(-50%);
   background-image: url(${fingerPng});
-  background-size: contain; /* 이미지 크기를 유지하면서 최대한 맞춤 */
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   width: 400px;
   height: 400px;
-  z-index: 1; /* 사용자 이미지보다 위에 오도록 설정 */
+  z-index: 1;
+
+  @media (max-width: 430px) {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const ExImg = styled.div`
@@ -55,7 +65,12 @@ const ExImg = styled.div`
   background-position: center;
   width: 400px;
   height: 400px;
-  z-index: 0; /* 배경보다 아래로 설정 */
+  z-index: 0;
+
+  @media (max-width: 430px) {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const Form = styled.form`
