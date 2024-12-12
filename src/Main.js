@@ -169,41 +169,6 @@ const Main = () => {
     setLoading(false);
   };
 
-  const downloadImage = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-
-    const canvasSize = window.innerWidth <= 430 ? 300 : 400;
-    const scaleFactor = window.devicePixelRatio || 1;
-
-    canvas.width = canvasSize * scaleFactor;
-    canvas.height = canvasSize * scaleFactor;
-    ctx.scale(scaleFactor, scaleFactor);
-
-    const baseImage = new Image();
-    baseImage.crossOrigin = "anonymous";
-    baseImage.src = fingerPng;
-
-    baseImage.onload = () => {
-      ctx.drawImage(baseImage, 0, 0, canvasSize, canvasSize);
-
-      if (imgUrl) {
-        const overlayImage = new Image();
-        overlayImage.crossOrigin = "anonymous";
-        overlayImage.src = imgUrl;
-
-        overlayImage.onload = () => {
-          ctx.drawImage(overlayImage, 0, 0, canvasSize, canvasSize);
-
-          const link = document.createElement("a");
-          link.download = "generated-image.png";
-          link.href = canvas.toDataURL("image/png");
-          link.click();
-        };
-      }
-    };
-  };
-
   return loading ? (
     <Loading />
   ) : (
@@ -225,7 +190,6 @@ const Main = () => {
         <Feedbackmsg>
           <p>Done!</p>
           <p>DON'T BE TOO MEAN TO PEOPLE</p>
-          <Button onClick={downloadImage}>Save</Button>
           <Button onClick={resetState}>Go back</Button>
         </Feedbackmsg>
       )}
