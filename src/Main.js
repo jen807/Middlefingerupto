@@ -7,9 +7,10 @@ import Loading from "./Loading";
 
 const Container = styled.section`
   width: 100%;
-  padding: ${mainStyle.pcPadding};
+  height: 100vh;
+  /* padding: ${mainStyle.pcPadding}; */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
 `;
@@ -20,13 +21,14 @@ const Title = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   color: black;
+  text-align: center;
 `;
 
 const ImgBox = styled.div`
   position: relative;
   width: 400px;
   height: 400px;
-  margin: 50px 0 30px;
+  margin: 30px 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,6 +87,7 @@ const Form = styled.form`
     border-bottom: 1px solid #b1b1b1;
     padding: 10px;
     font-size: 20px;
+    
 
     @media (max-width: 430px) {
       width: 300px;
@@ -103,6 +106,7 @@ const Form = styled.form`
     cursor: pointer;
     font-weight: 300;
     letter-spacing: 0.5px;
+    margin-top: 20px;
   }
 `;
 
@@ -119,15 +123,16 @@ const Feedbackmsg = styled.div`
 
 const Button = styled.button`
   all: unset;
-  background-color: black;
-  padding: 0 20px;
-  width: 100px;
-  height: 50px;
-  text-align: center;
-  color: white;
-  font-weight: 300;
-  cursor: pointer;
-  margin-right: 10px;
+    background-color: black;
+    padding: 0 20px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
 `;
 
 const Canvas = styled.canvas`
