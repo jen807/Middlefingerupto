@@ -109,7 +109,6 @@ const Form = styled.form`
     margin-top: 20px;
   }
 `;
-
 const Feedbackmsg = styled.div`
   text-align: center;
   font-size: 26px;
@@ -118,6 +117,10 @@ const Feedbackmsg = styled.div`
 
   p {
     margin-bottom: 10px;
+  }
+
+  p:last-child {
+    font-size: 18px; /* DON'T BE TOO MEAN TO PEOPLE 글자 크기 조정 */
   }
 `;
 
@@ -133,6 +136,7 @@ const Button = styled.button`
     font-weight: 300;
     letter-spacing: 0.5px;
     margin-top: 20px;
+    font-size: 20px;
 `;
 
 const Canvas = styled.canvas`
